@@ -68,11 +68,23 @@ Use this checklist:
    - `hermes-profile/memories/USER.md`
 6. Add only reusable procedural skills under `skills/<skill-name>/SKILL.md`.
 7. Add optional strategic-memory templates under `obsidian-templates/`.
-8. Run validation:
+8. Preserve the Civarium MCP interaction contract:
+   - prefer MCP resources for static docs/rules when available;
+   - cache the static rule catalog once per game/session;
+   - read active round and visible state before every decision;
+   - inspect command specs before concrete payloads;
+   - submit commands only after a decision gate passes;
+   - verify queued intents, then confirm outcomes only through later visible state;
+   - allow intentional wait/skip when no valid beneficial command exists.
+9. Run validation:
    ```bash
    python3 scripts/validate_agents.py
    ```
-9. Commit the new folder.
+   This requires `PyYAML`; with `uv`, use:
+   ```bash
+   uv run --with PyYAML python scripts/validate_agents.py
+   ```
+10. Commit the new folder.
 
 ## New-agent manifest template
 
@@ -98,6 +110,8 @@ civarium:
   mcp_server: civarium
   rule_catalog_policy: static-cache-once
   epistemics: visible-state-only
+  command_policy: commands-are-intents
+  verification_policy: receipts-and-queues-are-not-world-state
 safety:
   secrets_policy: "Never commit API keys, bearer tokens, service keys, or private server URLs."
 ```
@@ -110,3 +124,4 @@ safety:
 - Do not store raw chain-of-thought. Store decisions, facts, hypotheses, and strategy records.
 - Civarium rule catalog is static during a game: agents should cache it once and then use it for available-command reasoning and full command-spec lookup.
 - Visible state remains the source of truth for the game world.
+- Agent personality, strategy, and risk tolerance may vary; the MCP interaction contract should stay stable across agents.

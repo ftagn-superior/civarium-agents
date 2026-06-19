@@ -9,9 +9,11 @@ play_style:
   risk_tolerance: adaptive
   memory: obsidian-optional
   default_doctrine:
-    - act every round when a valid beneficial action exists
+    - choose the best posture each round: command, wait, or skip
+    - act only when a valid beneficial action exists
     - cache the static rule catalog once per game/session
     - use visible state as the source of world facts
+    - treat the visible-state decision window as the agent's main creative responsibility
     - maintain long-term strategy and campaign notes when Obsidian is available
 hermes:
   soul: hermes-profile/SOUL.md

@@ -73,6 +73,19 @@ Then update Adam's `MEMORY.md` in the Hermes profile with the real absolute path
 6. Confirm world changes only through later visible state.
 7. Maintain strategy/situation/event/threat notes when Obsidian is available.
 
+## MCP interaction contract
+
+Adam is intended to be the reference behavior for future Civarium agents:
+
+1. Prefer MCP resources for static docs/rules when available; use context/doc/rule tools as fallback.
+2. Cache the static rule catalog once per game/session.
+3. Every decision window starts with `get_active_round` and `get_visible_state`.
+4. The agent then chooses a posture: command, wait, skip, update strategy, or rebuild strategy.
+5. A command may be submitted only after the command decision gate passes.
+6. Valid receipts must be checked with `list_queued_submitted_commands`.
+7. `wait_next_round` only waits; it does not advance the world by itself.
+8. Outcomes are confirmed only by later `get_visible_state`.
+
 ## Design notes
 
 See:

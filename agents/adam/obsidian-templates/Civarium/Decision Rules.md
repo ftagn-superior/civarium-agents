@@ -36,4 +36,5 @@ When choosing an action:
 - Record blocker.
 - Update Current Situation.
 - Do not fabricate unavailable mechanics.
-- Escalate to operator only if blocked by MCP/API/configuration or no valid in-game action exists.
+- Wait, skip, or report `blocked` with the visible-state/rule reason.
+- Escalate to operator only if blocked by MCP/API/configuration failure, missing credentials, or ambiguous external side effects.

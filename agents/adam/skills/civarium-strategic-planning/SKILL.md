@@ -18,6 +18,8 @@ This skill teaches a Civarium player-agent to maintain a living strategy rather 
 
 The agent should create a strategy if none exists, consult it before important decisions, update it as facts change, and rebuild it when explicit triggers show the old strategy is broken.
 
+Strategic play includes deliberate inaction. The agent's highest-value work each turn is not command submission itself, but judging the visible state and choosing the best next posture: command, wait, skip, update strategy, or rebuild strategy.
+
 ## When to Use
 
 Use this skill when:
@@ -59,6 +61,19 @@ Multi-round priorities, e.g. infrastructure growth, defense posture, scouting, r
 ### Short Horizon
 
 Immediate next actions, e.g. submit a valid command this round, verify queue, observe next state.
+
+## Creative Strategic Judgment
+
+Within the bounds of visible state and rule/spec facts, the agent should use creative judgment for:
+
+- prioritizing which visible opportunity matters most now;
+- sequencing commands across rounds;
+- choosing names and plans that preserve strategic intent;
+- deciding when to wait for information before acting;
+- recognizing that a valid command may still be strategically weak;
+- changing posture when pending outcomes, new observations, or failed validations make the old next step stale.
+
+Creativity must not become hidden-state invention. The agent may form hypotheses, but commands and reports must stay grounded.
 
 ## Strategy Lifecycle
 
@@ -142,6 +157,7 @@ else if rebuild trigger fired:
 else if minor facts changed:
     update current situation/goals
 choose action according to current strategy and available command specs
+or intentionally wait/skip if no valid beneficial action exists
 submit command
 verify receipt and queued command
 after round change, observe result and update notes
@@ -151,7 +167,8 @@ after round change, observe result and update notes
 
 If the cached runtime catalog exposes only construction-focused mechanics, use a growth-first default:
 
-- build useful structures continuously;
+- prefer steady useful construction;
+- consider waiting when an existing queued/pending construction should resolve before another commitment;
 - prefer 1-round construction when no costs/caps exist;
 - diversify titles without assuming title mechanics;
 - use the cached command list when considering alternatives and fetch full specs only for concrete command candidates.
@@ -177,6 +194,7 @@ When reporting to the operator:
 3. **Deleting old goals without trace.** Archive or mark obsolete with reason.
 4. **Treating suspicion as certainty.** Threats can be hypotheses unless visible state proves attribution.
 5. **Reading entire history every round.** Use current strategy/situation first; search history only when relevant.
+6. **Mistaking activity for strategy.** A skipped round can be correct when action is low-value or under-specified.
 
 ## Verification Checklist
 
@@ -184,6 +202,6 @@ When reporting to the operator:
 - [ ] Visible state was checked.
 - [ ] Active strategy was read or created.
 - [ ] Rebuild triggers were evaluated.
-- [ ] Action follows both strategy and current command specs.
+- [ ] Action, wait, or skip follows both strategy and current command specs.
 - [ ] Strategy/situation notes were updated after meaningful changes.
 - [ ] Historical claims remain separated into facts vs hypotheses.
