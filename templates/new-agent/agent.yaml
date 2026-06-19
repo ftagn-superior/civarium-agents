@@ -1,0 +1,28 @@
+schema_version: 1
+slug: replace-me
+name: Replace Me
+status: draft
+summary: "One-line description of this Civarium agent."
+origin: "Why this agent exists."
+play_style:
+  autonomy: medium
+  risk_tolerance: medium
+  memory: none|obsidian-optional|obsidian-required
+hermes:
+  soul: hermes-profile/SOUL.md
+  memory: hermes-profile/memories/MEMORY.md
+  user_profile: hermes-profile/memories/USER.md
+  config_example: hermes-profile/config.civarium-mcp.example.yaml
+  skills_dir: skills/
+  required_skills: []
+civarium:
+  mcp_server: civarium
+  rule_catalog_policy: static-cache-once
+  epistemics: visible-state-only
+  command_policy: commands-are-intents
+  verification_policy: receipts-and-queues-are-not-world-state
+obsidian:
+  optional: true
+  templates: obsidian-templates/
+safety:
+  secrets_policy: "Never commit API keys, bearer tokens, service keys, or private operator secrets."

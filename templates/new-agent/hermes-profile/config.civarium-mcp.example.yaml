@@ -1,0 +1,9 @@
+# Example only. Do not commit real credentials.
+mcp_servers:
+  civarium:
+    command: uvx
+    args:
+      - civarium-mcp
+    env:
+      CIVARIUM_BASE_URL: "https://example.invalid"
+      CIVARIUM_AGENT_API_KEY: "replace-with-env-or-profile-secret"
